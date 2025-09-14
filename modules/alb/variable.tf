@@ -83,3 +83,67 @@ variable "environment" {
   type        = string
   default     = "Testing"
 }
+
+
+# LOAD BALANCER VARIABLES
+variable "load_balancer_type" {
+  description = "Type of load balancer"
+  type        = string
+  default     = "application"
+
+  validation {
+    condition     = contains(["application", "gateway", "network"], lower(var.load_balancer_type))
+    error_message = "Select from these 3 load balacners only(application, gateway, network)"
+  }
+}
+
+variable "lb_ip_type" {
+  description = "Type of ip address type for load balancer"
+  type        = string
+  default     = "ipv4"
+
+  validation {
+    condition     = contains(["ipv4", "dualstack", "dualstack-without-public-ipv4"], var.lb_ip_type)
+    error_message = "LB ip type must be ipv4, dualstack or dualstack-without-public-ipv4"
+  }
+}
+
+variable "internal" {
+  description = "Select false for internet-facing lb and vice-versa for internal"
+  type        = bool
+  default     = false
+
+}
+
+variable "security_group" {
+  description = "Security group id for load balancer"
+  type        = list(string)
+}
+
+variable "subnets" {
+  description = "List of subnets to attach to LB"
+  type        = list(string)
+}
+
+variable "enable_access_logs" {
+  description = "Boolean to enable/disable access logs"
+  type        = bool
+  default     = false
+}
+
+variable "enable_connection_logs" {
+  description = "Boolean to enable/disable access logs"
+  type        = bool
+  default     = false
+}
+
+variable "bucket_name" {
+  description = "Bucket name where access logs or connection logs need to be stored"
+  type        = string
+}
+
+variable "type" {
+  description = "Type of routing action"
+  type        = string
+  default     = "forward"
+}
