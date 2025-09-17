@@ -17,3 +17,7 @@ output "key_pair_name" {
   description = "The name of the key pair associated with the instances"
   value       = aws_key_pair.ec2_key.key_name
 }
+
+output "asg_name" {
+  value = aws_autoscaling_group.asg.name
+}
