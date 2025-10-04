@@ -15,3 +15,8 @@ output "attached_policies" {
     aws_iam_role_policy_attachment.s3_read_only.policy_arn
   ]
 }
+
+output "instance_profile_name" {
+  value       = aws_iam_instance_profile.ec2_instance_profile.name
+  description = "Instance profile name to attach to launch template / ASG"
+}
