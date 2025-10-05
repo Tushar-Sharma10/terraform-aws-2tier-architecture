@@ -31,3 +31,9 @@ variable "private_sg" {
   type        = string
   default     = "private-sg"
 }
+
+variable "rds_sg" {
+  description = "Name of the relational database security group"
+  type = string
+  default = "rds-sg"
+}

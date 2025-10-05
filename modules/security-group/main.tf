@@ -20,6 +20,17 @@ resource "aws_security_group" "private_sg" {
   }
 }
 
+# SG FOR RDS
+resource "aws_security_group" "rds_sg" {
+  name = var.rds_sg
+  description = "All inbound traffic from ec2 resources only"
+  vpc_id = var.vpc_id
+  tags = {
+    Name = var.rds_sg
+    Environment = var.environment
+  }
+}
+
 #INBOUND RULES FOR PUBLIC SG(ALLOW HTTP)
 resource "aws_vpc_security_group_ingress_rule" "inbound_rules_http_pub" {
   security_group_id = aws_security_group.public_sg.id
@@ -68,4 +79,14 @@ resource "aws_vpc_security_group_egress_rule" "outbound_rules_pv" {
   ip_protocol       = var.all_ports
   from_port         = 0
   to_port           = 0
+}
+
+# INBOUND RULES FOR RDS SG
+resource "aws_vpc_security_group_ingress_rule" "inbound_rules_rds" {
+  description = "Allow DB port traffic EC2 private SG"
+  referenced_security_group_id = aws_security_group.private_sg.id
+  security_group_id = aws_security_group.rds_sg.id
+  ip_protocol = var.ip_protocol
+  from_port = 3306 # FOR MYSQL
+  to_port = 3306
 }
