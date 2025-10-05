@@ -22,6 +22,7 @@ resource "aws_db_instance" "db_instance" {
   max_allocated_storage           = var.max_allocated_storage
   apply_immediately               = var.apply_immediately
   delete_automated_backups        = var.delete_automated_backups
+  vpc_security_group_ids          = var.security_group_ids
   database_insights_mode          = var.database_insights_mode
   enabled_cloudwatch_logs_exports = var.cloudwatch_logs_exports
   multi_az                        = var.multi_az

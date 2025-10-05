@@ -123,3 +123,8 @@ variable "db_password" {
   type        = string
   sensitive   = true
 }
+
+variable "security_group_ids" {
+  description = "Security Group ID"
+  type        = list(string)
+}
