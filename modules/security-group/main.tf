@@ -56,9 +56,9 @@ resource "aws_vpc_security_group_egress_rule" "outbound_rules_pub" {
   security_group_id = aws_security_group.public_sg.id
   description       = "Allow the resources associated with public sg to reach internet with no port limitations"
   cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 0
+  # from_port         = 0
   ip_protocol       = var.all_ports
-  to_port           = 0
+  # to_port           = 0
 }
 
 # INBOUND RULES FOR PRIVATE SG
@@ -77,8 +77,8 @@ resource "aws_vpc_security_group_egress_rule" "outbound_rules_pv" {
   description       = "Private Instances, outbound internet via NAT gateway"
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = var.all_ports
-  from_port         = 0
-  to_port           = 0
+  # from_port         = 0
+  # to_port           = 0
 }
 
 # INBOUND RULES FOR RDS SG
