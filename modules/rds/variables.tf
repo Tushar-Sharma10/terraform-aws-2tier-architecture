@@ -108,10 +108,10 @@ variable "publicly_accessible" {
   default     = false
 }
 
-variable "engine_version" {
-  description = "version of engine"
-  type        = string
-}
+# variable "engine_version" {
+#   description = "version of engine"
+#   type        = string
+# }
 
 variable "db_username" {
   description = "Master username for the RDS instance"

@@ -16,7 +16,7 @@ resource "aws_db_instance" "db_instance" {
   username                        = var.db_username
   password                        = var.db_password
   engine                          = var.engine
-  engine_version                  = var.engine_version
+  # engine_version                  = var.engine_version
   allocated_storage               = var.allocated_storage
   db_subnet_group_name            = aws_db_subnet_group.subnet_group.name
   max_allocated_storage           = var.max_allocated_storage
