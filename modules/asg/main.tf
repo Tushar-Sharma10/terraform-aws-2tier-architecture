@@ -29,6 +29,10 @@ resource "aws_launch_template" "launch_template" {
   user_data              = var.user_data != null ? filebase64(var.user_data) : null
   vpc_security_group_ids = var.security_group_ids
 
+  iam_instance_profile {
+    name = var.iam_instance_profile
+  }
+  
   monitoring {
     enabled = var.enabled_monitoring
   }

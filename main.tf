@@ -40,6 +40,7 @@ module "asg" {
   target_group_arns  = [module.alb.target_arn]
   subnets            = module.vpc.private_subnet_ids
   security_group_ids = [module.security_group.private_sg_id]
+  iam_instance_profile = module.iam.instance_profile_name
 }
 
 module "rds" {

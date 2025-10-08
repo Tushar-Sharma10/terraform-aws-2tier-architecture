@@ -145,3 +145,9 @@ variable "target_value" {
   type        = number
   default     = 50
 }
+
+variable "iam_instance_profile" {
+  description = "IAM instance profile name to attach to EC2 instances"
+  type        = string
+  default     = null
+}
